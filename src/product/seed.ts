@@ -1,0 +1,82 @@
+import type { PromptLibrary } from "./types";
+
+// Starter library so PromptForge looks alive on first open. Every prompt below
+// uses the {{variable}} / {{variable:default}} syntax to show off the engine.
+
+export const SEED_LIBRARY: PromptLibrary = {
+  version: 1,
+  collections: [
+    { id: "c-writing", name: "Writing" },
+    { id: "c-code", name: "Code" },
+    { id: "c-marketing", name: "Marketing" },
+    { id: "c-images", name: "Image gen" },
+  ],
+  prompts: [
+    {
+      id: "p-blog",
+      title: "SEO blog outline",
+      body: "Write a detailed SEO blog outline about {{topic}} for an audience of {{audience:busy founders}}. Target the primary keyword \"{{keyword}}\". Include an H1, 6–8 H2 sections, and 3 FAQ questions. Tone: {{tone:practical and concise}}.",
+      collectionId: "c-writing",
+      tags: ["seo", "blog", "outline"],
+      model: "claude",
+      favorite: true,
+      createdAt: Date.now() - 86_400_000 * 6,
+      updatedAt: Date.now() - 86_400_000 * 6,
+    },
+    {
+      id: "p-cold-email",
+      title: "Cold outreach email",
+      body: "Write a {{length:120}}-word cold email to {{prospect_role}} at a {{company_type:B2B SaaS}} company. Offer: {{offer}}. One clear CTA: {{cta:book a 15-min call}}. No fluff, no \"I hope this finds you well\".",
+      collectionId: "c-marketing",
+      tags: ["sales", "email", "outreach"],
+      model: "chatgpt",
+      favorite: false,
+      createdAt: Date.now() - 86_400_000 * 5,
+      updatedAt: Date.now() - 86_400_000 * 5,
+    },
+    {
+      id: "p-refactor",
+      title: "Refactor & explain code",
+      body: "Refactor the following {{language:TypeScript}} code for readability and performance. Explain each change in one line. Keep the public API identical.\n\n```\n{{code}}\n```",
+      collectionId: "c-code",
+      tags: ["refactor", "review"],
+      model: "claude",
+      favorite: true,
+      createdAt: Date.now() - 86_400_000 * 4,
+      updatedAt: Date.now() - 86_400_000 * 4,
+    },
+    {
+      id: "p-unit-tests",
+      title: "Generate unit tests",
+      body: "Write thorough unit tests for this {{language:TypeScript}} function using {{framework:vitest}}. Cover happy path, edge cases, and error handling.\n\n```\n{{code}}\n```",
+      collectionId: "c-code",
+      tags: ["testing"],
+      model: "any",
+      favorite: false,
+      createdAt: Date.now() - 86_400_000 * 3,
+      updatedAt: Date.now() - 86_400_000 * 3,
+    },
+    {
+      id: "p-launch-tweet",
+      title: "Launch thread",
+      body: "Write a {{count:6}}-tweet launch thread for {{product}}. Hook in tweet 1, problem in 2, solution in 3–4, proof in 5, CTA to {{link}} in the last. Voice: {{voice:builder-to-builder}}.",
+      collectionId: "c-marketing",
+      tags: ["twitter", "launch"],
+      model: "chatgpt",
+      favorite: false,
+      createdAt: Date.now() - 86_400_000 * 2,
+      updatedAt: Date.now() - 86_400_000 * 2,
+    },
+    {
+      id: "p-midjourney",
+      title: "Product hero shot",
+      body: "{{subject}}, studio product photography, {{lighting:soft rim lighting}}, on a {{surface:matte concrete}} surface, shallow depth of field, hyper detailed, 8k --ar {{ratio:16:9}} --style raw",
+      collectionId: "c-images",
+      tags: ["midjourney", "product"],
+      model: "midjourney",
+      favorite: false,
+      createdAt: Date.now() - 86_400_000,
+      updatedAt: Date.now() - 86_400_000,
+    },
+  ],
+};
