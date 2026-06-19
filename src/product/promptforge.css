@@ -1,0 +1,498 @@
+/* —— PromptForge (lemonsqueezy-saas-starter MVP) —— reuses theme vars from styles.css */
+
+.pf {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pf-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.pf-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.pf-logo {
+  font-size: 28px;
+  line-height: 1;
+}
+.pf-brand h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.pf-brand p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.pf-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pf-tier {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+.pf-tier--pro {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* Layout: sidebar | list | detail */
+.pf-body {
+  display: grid;
+  grid-template-columns: 220px 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .pf-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pf-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.pf-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pf-nav-heading {
+  margin: 8px 0 2px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.pf-nav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pf-nav-item:hover {
+  background: var(--surface-2);
+}
+.pf-nav-item.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+.pf-nav-item span {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.pf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pf-tag {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.pf-tag.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.pf-io {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.pf-import {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.pf-import input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* List column */
+.pf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.pf-search {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 10px 12px;
+  font: inherit;
+}
+.pf-list-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.pf-card {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  cursor: pointer;
+  color: var(--text);
+  font: inherit;
+}
+.pf-card:hover {
+  border-color: var(--muted);
+}
+.pf-card.active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.pf-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.pf-card-title {
+  font-weight: 600;
+}
+.pf-star {
+  color: var(--warn);
+}
+.pf-card-snippet {
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pf-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.pf-model {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+.pf-card-tag {
+  font-size: 11px;
+  color: var(--muted);
+}
+.pf-empty,
+.pf-muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Detail / editor */
+.pf-detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  min-width: 0;
+}
+.pf-detail-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 40px 0;
+}
+.pf-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pf-editor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pf-title-input {
+  flex: 1;
+  min-width: 180px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 2px;
+}
+.pf-title-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.pf-editor-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.pf-icon {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.pf-icon.on {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+.pf-editor-controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pf-field--grow {
+  flex: 1;
+  min-width: 160px;
+}
+.pf-field-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.pf-field-label code {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 11px;
+}
+.pf-field input,
+.pf-field select,
+.pf-textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  padding: 8px 10px;
+}
+.pf-textarea {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+}
+.pf-field input:focus,
+.pf-field select:focus,
+.pf-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.pf-editor-copyrow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Template runner — the beefy feature */
+.pf-runner {
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pf-runner-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.pf-runner-head h4 {
+  margin: 0;
+}
+.pf-var-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+.pf-var-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.pf-compiled {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.pf-compiled-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.pf-warn-pill {
+  color: var(--warn);
+  font-style: normal;
+  font-size: 11px;
+  margin-left: 6px;
+}
+.pf-output {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* Buttons */
+.pf-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pf-btn:hover {
+  border-color: var(--muted);
+}
+.pf-btn--primary {
+  background: var(--accent);
+  color: #04130d;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.pf-btn--primary:hover {
+  filter: brightness(1.05);
+}
+.pf-btn--ghost {
+  background: transparent;
+}
+.pf-btn--danger {
+  color: var(--danger);
+  border-color: rgba(248, 113, 113, 0.4);
+  background: transparent;
+}
+.pf-btn--block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Upgrade modal */
+.pf-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+.pf-modal {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  max-width: 420px;
+  width: 100%;
+}
+.pf-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+}
+.pf-pro-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+.pf-price-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pf-price-list li {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.pf-price-list strong {
+  color: var(--accent);
+}
+.pf-fineprint {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}

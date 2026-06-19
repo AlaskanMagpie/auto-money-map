@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import PromptForge from "./product/PromptForge";
+import PitchTab from "./PitchTab";
 import { OPPORTUNITIES } from "./data/opportunities";
 import { BUSINESS_PLANS, getPlanByOpportunityId } from "./data/businessPlans";
 import {
@@ -17,7 +19,7 @@ import {
   type OpportunityLabel,
 } from "./types";
 
-type Tab = "explorer" | "plans" | "openserv" | "launch";
+type Tab = "promptforge" | "explorer" | "plans" | "openserv" | "launch" | "pitch";
 type SortKey = "score" | "rev30" | "rev90" | "speed" | "automation";
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS) as OpportunityCategory[];
@@ -295,8 +297,8 @@ function BusinessPlanCard({ opportunityId }: { opportunityId: string }) {
   );
 }
 
-export default function App() {
-  const [tab, setTab] = useState<Tab>("explorer");
+export default function App({ isAdmin = false }: { isAdmin?: boolean }) {
+  const [tab, setTab] = useState<Tab>("promptforge");
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<OpportunityCategory | "all">("all");
   const [labelFilter, setLabelFilter] = useState<OpportunityLabel | "all">("all");
@@ -350,6 +352,9 @@ export default function App() {
 
   return (
     <div className="app">
+      <div className="preview-banner">
+        <span className="preview-dot" /> Private preview build{isAdmin ? " · admin access" : ""} — share by invitation only
+      </div>
       <header className="hero">
         <div className="hero-inner">
           <p className="eyebrow">Automation-first income explorer</p>
@@ -370,10 +375,12 @@ export default function App() {
       <nav className="tabs">
         {(
           [
+            ["promptforge", "★ PromptForge (MVP)"],
             ["explorer", "Explorer"],
             ["plans", "Top Plans"],
             ["openserv", "OpenServ Stack"],
             ["launch", "Launch Calendar"],
+            ...(isAdmin ? [["pitch", "Pitch & ROI"] as const] : []),
           ] as const
         ).map(([id, label]) => (
           <button
@@ -388,6 +395,8 @@ export default function App() {
       </nav>
 
       <main className="main">
+        {tab === "promptforge" && <PromptForge isAdmin={isAdmin} />}
+
         {tab === "explorer" && (
           <div className={`explorer ${selected ? "explorer--split" : ""}`}>
             <div className="explorer-main">
@@ -535,6 +544,8 @@ export default function App() {
             ))}
           </div>
         )}
+
+        {tab === "pitch" && <PitchTab />}
       </main>
 
       <footer className="footer">
