@@ -18,6 +18,38 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Diagnostic: turn a silent blank screen into a visible message.
+      // Catches failed asset loads (capture phase) and a no-mount timeout.
+      (function () {
+        function show(msg) {
+          var r = document.getElementById("root");
+          if (r && r.children.length === 0) {
+            r.innerHTML =
+              '<pre style="color:#e8eaef;background:#08090c;min-height:100vh;margin:0;padding:24px;white-space:pre-wrap;font-family:monospace;font-size:13px">PromptForge could not start:\n\n' +
+              msg +
+              "\n\nTry a hard refresh (Ctrl/Cmd+Shift+R).</pre>";
+          }
+        }
+        window.addEventListener(
+          "error",
+          function (e) {
+            if (e && e.target && (e.target.src || e.target.href)) {
+              show("Failed to load asset: " + (e.target.src || e.target.href));
+            } else if (e && e.message) {
+              show(e.message);
+            }
+          },
+          true,
+        );
+        window.addEventListener("unhandledrejection", function (e) {
+          show("Unhandled promise rejection: " + (e.reason && e.reason.message ? e.reason.message : e.reason));
+        });
+        setTimeout(function () {
+          show("App did not mount within 8s (see browser console for details).");
+        }, 8000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
