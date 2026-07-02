@@ -1,0 +1,443 @@
+/* Money Printer tab — matches app dark theme in styles.css */
+
+.mp {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mp-title-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.mp-header h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
+}
+
+.mp-intro {
+  margin-bottom: 0;
+  max-width: 68ch;
+}
+
+.mp-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.mp-controls select {
+  padding: 0.5rem 0.7rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.mp-btn {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.mp-btn:hover {
+  border-color: var(--muted);
+}
+
+.mp-btn--run {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #08090c;
+}
+
+.mp-btn--run:hover {
+  border-color: var(--accent);
+  filter: brightness(1.08);
+}
+
+.mp-btn--pause {
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: var(--warn);
+}
+
+.mp-btn--ghost {
+  background: none;
+  color: var(--muted);
+}
+
+.mp-btn--approve {
+  flex: 1;
+  background: var(--accent-dim);
+  border-color: rgba(110, 231, 183, 0.35);
+  color: var(--accent);
+}
+
+.mp-btn--approve:hover {
+  border-color: var(--accent);
+}
+
+.mp-btn--reject {
+  flex: 1;
+  background: rgba(248, 113, 113, 0.08);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: var(--danger);
+}
+
+.mp-btn--reject:hover {
+  border-color: var(--danger);
+}
+
+/* —— Stats —— */
+.mp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.mp-stat {
+  padding: 0.75rem 0.9rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.mp-stat-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mp-stat-value {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.mp-neg {
+  color: var(--danger) !important;
+}
+
+.mp-pos {
+  color: var(--accent);
+}
+
+/* —— Layout —— */
+.mp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .mp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mp-col {
+  margin-bottom: 0;
+}
+
+.mp-col-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mp-col-title--gap {
+  margin-top: 1.5rem;
+}
+
+.mp-queue-count {
+  padding: 0.1rem 0.45rem;
+  background: var(--accent-dim);
+  border-radius: 4px;
+  font-family: var(--mono);
+  color: var(--accent);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.mp-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.mp-live-dot--on {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: mp-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes mp-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* —— Pipeline —— */
+.mp-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mp-pipe-stage {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.mp-pipe-name {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.mp-pipe-bar {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.mp-pipe-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.mp-pipe-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* —— Review gate —— */
+.mp-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mp-draft {
+  padding: 0.9rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 8px;
+}
+
+.mp-draft-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.mp-draft-head h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.mp-draft-price {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.mp-draft-meta {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.mp-draft-notes {
+  margin: 0 0 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.mp-draft-notes li {
+  font-size: 0.8rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.mp-draft-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.mp-flag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--warn);
+  border-radius: 4px;
+}
+
+.mp-draft-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mp-empty {
+  margin: 0;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* —— Live shelf —— */
+.mp-shelf {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.mp-product {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.mp-product-main strong {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.mp-product-meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.mp-product-nums {
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--mono);
+}
+
+.mp-product-sales {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.mp-product-rev {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* —— Ledger —— */
+.mp-ledger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-height: 340px;
+  overflow-y: auto;
+  font-size: 0.78rem;
+}
+
+.mp-ledger-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+.mp-ledger-row--sale {
+  background: rgba(110, 231, 183, 0.05);
+}
+
+.mp-ledger-row--refund,
+.mp-ledger-row--takedown {
+  background: rgba(248, 113, 113, 0.06);
+}
+
+.mp-ledger-row--warn {
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.mp-ledger-icon {
+  flex-shrink: 0;
+  width: 1.2rem;
+  text-align: center;
+}
+
+.mp-ledger-text {
+  flex: 1;
+  color: var(--text);
+}
+
+.mp-ledger-row--info .mp-ledger-text,
+.mp-ledger-row--warn .mp-ledger-text {
+  color: var(--muted);
+}
+
+.mp-ledger-row--takedown .mp-ledger-text,
+.mp-ledger-row--refund .mp-ledger-text {
+  color: var(--danger);
+}
+
+.mp-ledger-row--praise .mp-ledger-text {
+  color: var(--warn);
+}
+
+.mp-ledger-amt {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.mp-fineprint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: 90ch;
+}

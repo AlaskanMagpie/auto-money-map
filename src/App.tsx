@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import PromptForge from "./product/PromptForge";
+import MoneyPrinter from "./printer/MoneyPrinter";
 import PitchTab from "./PitchTab";
 import { OPPORTUNITIES } from "./data/opportunities";
 import { BUSINESS_PLANS, getPlanByOpportunityId } from "./data/businessPlans";
@@ -19,7 +20,7 @@ import {
   type OpportunityLabel,
 } from "./types";
 
-type Tab = "promptforge" | "explorer" | "plans" | "openserv" | "launch" | "pitch";
+type Tab = "promptforge" | "printer" | "explorer" | "plans" | "openserv" | "launch" | "pitch";
 type SortKey = "score" | "rev30" | "rev90" | "speed" | "automation";
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_LABELS) as OpportunityCategory[];
@@ -376,6 +377,7 @@ export default function App({ isAdmin = false }: { isAdmin?: boolean }) {
         {(
           [
             ["promptforge", "★ PromptForge (MVP)"],
+            ["printer", "🖨 Money Printer"],
             ["explorer", "Explorer"],
             ["plans", "Top Plans"],
             ["openserv", "OpenServ Stack"],
@@ -396,6 +398,8 @@ export default function App({ isAdmin = false }: { isAdmin?: boolean }) {
 
       <main className="main">
         {tab === "promptforge" && <PromptForge isAdmin={isAdmin} />}
+
+        {tab === "printer" && <MoneyPrinter />}
 
         {tab === "explorer" && (
           <div className={`explorer ${selected ? "explorer--split" : ""}`}>
