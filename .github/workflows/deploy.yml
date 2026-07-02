@@ -19,16 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Pages must build via this workflow ONLY. While the repo is on the
-      # "legacy" branch build, every push races this deploy against GitHub's
-      # automatic Jekyll build of the raw repo root — when legacy wins, the
-      # site serves unbuilt source and blank-screens. Flip it permanently.
-      - name: Ensure Pages uses workflow builds
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api -X PUT "repos/${{ github.repository }}/pages" -f build_type=workflow \
-            || echo "::warning::Could not set Pages build_type=workflow (check permissions)"
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -50,5 +40,11 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # While Pages is in legacy mode, GitHub's automatic Jekyll build of the
+      # raw repo root races this deploy on every push (it finishes ~40s after
+      # push; last writer wins). Deploy after it so the built site always
+      # lands last. Remove once Settings → Pages → Source = "GitHub Actions".
+      - name: Wait out the legacy Jekyll build
+        run: sleep 75
       - id: deployment
         uses: actions/deploy-pages@v4
