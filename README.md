@@ -18,6 +18,7 @@ Open **http://localhost:5173**
 
 | Tab | Content |
 |-----|---------|
+| **Money Printer** | Human-in-the-loop revenue simulator — agents draft products, you work the approve/reject gate, quality of your calls drives the print rate |
 | **Explorer** | Filter/search/sort 55 opportunities by category, label, ROI |
 | **Top Plans** | 14 deep business plans with launch steps and scale triggers |
 | **OpenServ Stack** | 6-agent orchestration + human approval gates |
@@ -45,6 +46,9 @@ src/
     opportunities.ts   # 55 ranked opportunities
     businessPlans.ts   # Top business plans
     openserv.ts        # Agent workflows + launch phases
+  printer/
+    engine.ts          # Money Printer simulation (pure functions)
+    MoneyPrinter.tsx   # Human review gate UI
   App.tsx              # Interactive landing page
   types.ts             # ROI scoring model
 ```
